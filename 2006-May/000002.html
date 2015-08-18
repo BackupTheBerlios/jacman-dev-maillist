@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Jacman-dev] [Patch] Properly use --ignore during update
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/jacman-dev/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:jacman-dev%40lists.berlios.de?Subject=Re%3A%20%5BJacman-dev%5D%20%5BPatch%5D%20Properly%20use%20--ignore%20during%20update&In-Reply-To=%3C20060529120456.GA16091%40fiesta.cs.tu-berlin.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000001.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Jacman-dev] [Patch] Properly use --ignore during update</H1>
+    <B>Bjoern Brandenburg</B> 
+    <A HREF="mailto:jacman-dev%40lists.berlios.de?Subject=Re%3A%20%5BJacman-dev%5D%20%5BPatch%5D%20Properly%20use%20--ignore%20during%20update&In-Reply-To=%3C20060529120456.GA16091%40fiesta.cs.tu-berlin.de%3E"
+       TITLE="[Jacman-dev] [Patch] Properly use --ignore during update">askadar at cs.tu-berlin.de
+       </A><BR>
+    <I>Mon May 29 14:04:56 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000001.html">[Jacman-dev] [Patch] Properly use --ignore during update
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Thanks for identifying the bug (I haven't verified it yet, but I trust 
+</I>&gt;<i> you!). I will add the patch if that really does solve it. I can't 
+</I>&gt;<i> actually see why it makes a difference. But, I'm tired as I've just come 
+</I>&gt;<i> back from a conference in Italy and haven't had enough sleep yet!
+</I>&gt;<i> 
+</I>&gt;<i> PS If you fancy becoming a contributor (with as much/little as you like) 
+</I>&gt;<i> then let me know and I'll give you access to the CVS repo.
+</I>
+Well I think it makes a difference because the old version is equivalent to
+	pacman -Su '--ignore &lt;pkg&gt;'
+(note the ticks) while the patched version is equivalent to
+	pacman -Su --ingore &lt;pkg&gt;
+which is what we actually want.
+
+Thank you for the cvs offer, but unfortunately I don't have the time right now to contribute on a regular basis. I'll get back to it if I happen have more patches ready.
+
+Best regards,
+Bjoern
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000001.html">[Jacman-dev] [Patch] Properly use --ignore during update
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/jacman-dev">More information about the Jacman-dev
+mailing list</a><br>
+</body></html>

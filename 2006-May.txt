@@ -1,0 +1,111 @@
+From askadar at cs.tu-berlin.de  Thu May 25 14:31:35 2006
+From: askadar at cs.tu-berlin.de (=?utf-8?q?Bj=C3=B6rn_Brandenburg?=)
+Date: Thu, 25 May 2006 14:31:35 +0200
+Subject: [Jacman-dev] [Patch] Properly use --ignore during update
+Message-ID: <200605251431.35812.askadar@cs.tu-berlin.de>
+
+Hi Jacman Devs,
+
+first of all let me thank you for the great pacman front-end! Unfortunately, I 
+think I stumbled over a bug. Selecting packages to ignore during an upgrade 
+does not work for me, please have a look at a screen shot for details [1].
+
+The attached patch fixes the problem for me.
+
+Best regards,
+Bj?rn
+
+[1] http://user.cs.tu-berlin.de/~askadar/stuff/jacman-bug.png
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: ignore.patch
+Type: text/x-diff
+Size: 756 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/jacman-dev/attachments/20060525/dd64cb1a/attachment.patch>
+
+From mail at andy-roberts.net  Sat May 27 23:44:56 2006
+From: mail at andy-roberts.net (Andy Roberts)
+Date: Sat, 27 May 2006 22:44:56 +0100
+Subject: [Jacman-dev] [Patch] Properly use --ignore during update
+In-Reply-To: <200605251431.35812.askadar@cs.tu-berlin.de>
+References: <200605251431.35812.askadar@cs.tu-berlin.de>
+Message-ID: <4478C858.2000606@andy-roberts.net>
+
+Bj?rn Brandenburg wrote:
+> Hi Jacman Devs,
+>
+> first of all let me thank you for the great pacman front-end! Unfortunately, I 
+> think I stumbled over a bug. Selecting packages to ignore during an upgrade 
+> does not work for me, please have a look at a screen shot for details [1].
+>
+> The attached patch fixes the problem for me.
+>
+> Best regards,
+> Bj?rn
+>
+> [1] http://user.cs.tu-berlin.de/~askadar/stuff/jacman-bug.png
+>   
+> ------------------------------------------------------------------------
+>
+> Index: UpdatePackagesDialog.java
+> ===================================================================
+> RCS file: /cvsroot/jacman/jacman/src/andyr/jacman/gui/UpdatePackagesDialog.java,v
+> retrieving revision 1.6
+> diff -u -r1.6 UpdatePackagesDialog.java
+> --- UpdatePackagesDialog.java	3 Jan 2006 23:24:34 -0000	1.6
+> +++ UpdatePackagesDialog.java	25 May 2006 12:32:45 -0000
+> @@ -391,8 +391,8 @@
+>  
+>  				List selectedPackages = checkableTableFormat.getSelection();
+>  				for (Iterator p = selectedPackages.iterator(); p.hasNext();) {
+> -					commandArgs.add("--ignore "
+> -							+ ((PacmanPkg) p.next()).getName());
+> +					commandArgs.add("--ignore");
+> +					commandArgs.add(((PacmanPkg) p.next()).getName());
+>  				}
+>  
+>  				String[] command = new String[commandArgs.size()];
+>   
+Bjorn,
+
+Thanks for identifying the bug (I haven't verified it yet, but I trust 
+you!). I will add the patch if that really does solve it. I can't 
+actually see why it makes a difference. But, I'm tired as I've just come 
+back from a conference in Italy and haven't had enough sleep yet!
+
+Cheers,
+Andy
+
+PS If you fancy becoming a contributor (with as much/little as you like) 
+then let me know and I'll give you access to the CVS repo.
+
+
+From askadar at cs.tu-berlin.de  Mon May 29 14:04:56 2006
+From: askadar at cs.tu-berlin.de (Bjoern Brandenburg)
+Date: Mon, 29 May 2006 14:04:56 +0200
+Subject: [Jacman-dev] [Patch] Properly use --ignore during update
+In-Reply-To: <4478C858.2000606@andy-roberts.net>
+References: <200605251431.35812.askadar@cs.tu-berlin.de> <4478C858.2000606@andy-roberts.net>
+Message-ID: <20060529120456.GA16091@fiesta.cs.tu-berlin.de>
+
+> Thanks for identifying the bug (I haven't verified it yet, but I trust 
+> you!). I will add the patch if that really does solve it. I can't 
+> actually see why it makes a difference. But, I'm tired as I've just come 
+> back from a conference in Italy and haven't had enough sleep yet!
+> 
+> PS If you fancy becoming a contributor (with as much/little as you like) 
+> then let me know and I'll give you access to the CVS repo.
+
+Well I think it makes a difference because the old version is equivalent to
+	pacman -Su '--ignore <pkg>'
+(note the ticks) while the patched version is equivalent to
+	pacman -Su --ingore <pkg>
+which is what we actually want.
+
+Thank you for the cvs offer, but unfortunately I don't have the time right now to contribute on a regular basis. I'll get back to it if I happen have more patches ready.
+
+Best regards,
+Bjoern
+
+
